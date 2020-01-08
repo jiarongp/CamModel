@@ -8,7 +8,8 @@ patch_num = 25
 patch_span = 256 * 5
 
 patches_root = 'patches'
-patches_db_path = os.path.join(patches_root,'patch.npy')
+train_db_path = os.path.join(patches_root,'train.npy')
+test_db_path = os.path.join(patches_root,'test.npy')
 
 split_path = 'split.npy'
 

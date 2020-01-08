@@ -24,3 +24,34 @@ Format the images into appropriately pre-processed floating point tensors before
 2. Decode contents of these images and convert it into proper grid format as per their RGB content.
 3. Convert them into floating point tensors.
 4. Rescale the tensors from values between 0 and 255 to values between 0 and 1, as **neural networks prefer to deal with small input values.**
+
+
+## Construct the Network
+
+![CNN Structure](CNN_Structure.png)
+
+### Constrained Convolution Layer
+
+CNNs in their existing form do not suppress the image’s content and may lead to a classifier that identifies the scenes and objects associated with training data.
+
+The constrained convolutional layer which can jointly suppress an image’s content and adaptively learn pixel values dependencies while training CNN to perform universal image manipulation detection.
+
+Each of the $K$ filters $w_k$ in the first convolutional layer of the CNN have the following constraints placed on them:
+
+$$\begin{cases}
+  w_k^{(1)}(0, 0) = -1\\    
+  \sum_{l,m \neq 0} w_k^{(1)}(l, m) = 1
+\end{cases}$$
+
+We enforce the first convolutional layer in CNN to extract prediction-error features by learning a normalized linear combination of the central pixel value in terms of its local
+neighbors within the convolutional filter dimension.
+
+![](Constrained_Conv.png)
+
+Additionally, while training CNNs, their testing accuracies on a separate testing
+database were recorded every 1000 iterations to produce figures in the experiments sections.
+
+### Training
+
+The batch size equal to 64 and the parameters of the stochastic gradient descent as follows:
+$momentum = 0.9$, $decay = 0.0005$, and a $learning rate ε = 10^{−3}$ that decreases every 5 epochs by a factor $γ = 0.5$. We trained the CNN in each experiment for 45 epochs (approximately 1642 iterations).
