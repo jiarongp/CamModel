@@ -13,15 +13,19 @@ class ConstrainLayer(Model, Callback):
     def __init__(self, model):
         super(ConstrainLayer, self).__init__()
         self.model = model
+        self.tmp = None
     # Utilized before each batch
     def on_batch_begin(self, batch, logs={}):
         # Get the weights of the first layer
         all_weights = self.model.get_weights()
         weights = np.asarray(all_weights[0])
-        # Constrain the first layer
-        weights = constrainLayer(weights)
-        # Return the constrained weights back to the network
-        all_weights[0] = weights
+        # check if it is converged
+        if self.tmp is None or self.tmp != weights:
+            # Constrain the first layer
+            weights = constrainLayer(weights)
+            self.tmp = weights
+            # Return the constrained weights back to the network
+            all_weights[0] = weights
         self.model.set_weights(all_weights)
 
 def constrainLayer(weights):
