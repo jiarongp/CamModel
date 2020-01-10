@@ -20,7 +20,7 @@ class ConstrainLayer(Model, Callback):
         all_weights = self.model.get_weights()
         weights = np.asarray(all_weights[0])
         # check if it is converged
-        if self.tmp is None or self.tmp != weights:
+        if self.tmp is None or np.all(self.tmp != weights):
             # Constrain the first layer
             weights = constrainLayer(weights)
             self.tmp = weights
@@ -95,7 +95,7 @@ def build():
         Activation('relu'),
         Dense(200),
         Activation('relu'),
-        Dense(8, activation='softmax')
+        Dense(3, activation='softmax')
     ])
     
     Net.summary()
