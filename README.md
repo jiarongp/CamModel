@@ -55,3 +55,6 @@ database were recorded every 1000 iterations to produce figures in the experimen
 
 The batch size equal to 64 and the parameters of the stochastic gradient descent as follows:
 $momentum = 0.9$, $decay = 0.0005$, and a $learning rate ε = 10^{−3}$ that decreases every 5 epochs by a factor $γ = 0.5$. We trained the CNN in each experiment for 45 epochs (approximately 1642 iterations).
+
+## Next Step
+
