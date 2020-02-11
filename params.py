@@ -13,3 +13,6 @@ test_db_path = os.path.join(patches_root,'test.npy')
 patches_db_path = os.path.join(patches_root,'patches.npy')
 
 split_path = 'split.npy'
+
+robust_root = 'robust'
+robust_db_path = os.path.join(patches_root,'patches.npy')
