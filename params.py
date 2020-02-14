@@ -16,3 +16,8 @@ split_path = 'split.npy'
 
 robust_root = 'robust'
 robust_db_path = os.path.join(patches_root,'patches.npy')
+
+compr_root = 'compr'
+compr_img = os.path.join(compr_root,'dresden')
+compr_patches = os.path.join(compr_root,'patches')
+
