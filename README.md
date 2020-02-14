@@ -58,3 +58,5 @@ $momentum = 0.9$, $decay = 0.0005$, and a $learning rate ε = 10^{−3}$ that de
 
 ## Next Step
 
+mean confidence, class imbalance, more post-processing
+
