@@ -2,12 +2,13 @@ import os
 
 dresden_csv = 'dresden.csv'
 dresden_images_root = 'dresden'
-images_db_path = 'dresden.npy'
+train_csv_path = 'train.csv'
+unseen_csv_path = 'unseen.csv'
 
 patch_num = 25
 patch_span = 256 * 5
 
-patches_root = 'patches'
+patches_root = 'train'
 train_db_path = os.path.join(patches_root,'train.npy')
 test_db_path = os.path.join(patches_root,'test.npy')
 patches_db_path = os.path.join(patches_root,'patches.npy')

@@ -60,7 +60,7 @@ $momentum = 0.9$, $decay = 0.0005$, and a $learning rate ε = 10^{−3}$ that de
 
 Test the robustness of our model (trained on Canon)
 
-- train the model on **Canon_Ixus70**, **Nikon_D70**, **Olympus_MJU** because they share the similar images' scenes, make the number of traing images of each camera close.
+- train the model on **Canon_Ixus70**, **Nikon_D200**, **Olympus_MJU** because they share the similar images' scenes, make the number of traing images of each camera close.
 
 - plot the mean confidence of each classification
 
@@ -70,7 +70,7 @@ We want to see whether our model simply see them as a unknown data or classifies
 
 Test the model on 
 - Canon_Ixus55(same brand, same content)
-- Nikon_D200(same brand, same content)
+- Nikon_D70(same brand, same content)
 - Canon_Powershot64(same brand, different content)
 - Samsung_L74(different brand, same content)
 - Sony_W170(different brand, different content)
