@@ -28,7 +28,7 @@ Format the images into appropriately pre-processed floating point tensors before
 
 ## Construct the Network
 
-![CNN Structure](CNN_Structure.png)
+![CNN Structure](README/CNN_Structure.png)
 
 ### Constrained Convolution Layer
 
@@ -46,7 +46,7 @@ $$\begin{cases}
 We enforce the first convolutional layer in CNN to extract prediction-error features by learning a normalized linear combination of the central pixel value in terms of its local
 neighbors within the convolutional filter dimension.
 
-![](Constrained_Conv.png)
+![](README/Constrained_Conv.png)
 
 Additionally, while training CNNs, their testing accuracies on a separate testing
 database were recorded every 1000 iterations to produce figures in the experiments sections.
@@ -58,5 +58,29 @@ $momentum = 0.9$, $decay = 0.0005$, and a $learning rate ε = 10^{−3}$ that de
 
 ## Next Step
 
-mean confidence, class imbalance, more post-processing
+Test the robustness of our model (trained on Canon)
 
+- train the model on **Canon_Ixus70**, **Nikon_D70**, **Olympus_MJU** because they share the similar images' scenes, make the number of traing images of each camera close.
+
+- plot the mean confidence of each classification
+
+### Robustness to Different makes
+
+We want to see whether our model simply see them as a unknown data or classifies them to one of the known categories.
+
+Test the model on 
+- Canon_Ixus55(same brand, same content)
+- Nikon_D200(same brand, same content)
+- Canon_Powershot64(same brand, different content)
+- Samsung_L74(different brand, same content)
+- Sony_W170(different brand, different content)
+
+### Robustness to Post-processing 
+
+- JPEG compression
+- Gaussian Noise 
+- Gaussian Blur.
+
+### Robustness to Different Instances
+
+Train model on only one instance, test it with other instances.

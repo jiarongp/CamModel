@@ -14,7 +14,7 @@ patches_db_path = os.path.join(patches_root,'patches.npy')
 
 split_path = 'split.npy'
 
-unseen_root = 'robust'
+unseen_root = 'unseen'
 
 compr_root = 'compr'
 compr_img = os.path.join(compr_root,'dresden')
