@@ -9,11 +9,8 @@ patch_num = 25
 patch_span = 256 * 5
 
 patches_root = 'train'
-train_db_path = os.path.join(patches_root,'train.npy')
-test_db_path = os.path.join(patches_root,'test.npy')
 patches_db_path = os.path.join(patches_root,'patches.npy')
-
-split_path = 'split.npy'
+weights_path = os.path.join(patches_root,'weights.csv')
 
 unseen_root = 'unseen'
 
