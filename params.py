@@ -24,6 +24,6 @@ ins_patches_db = os.path.join(ins_root,'patches.npy')
 ins_train_csv = os.path.join(ins_root, 'train.csv')
 ins_test_csv = os.path.join(ins_root, 'test.csv')
 ins_weights = os.path.join(ins_root,'weights.csv')
-ins_train = os.path.join(ins_root,'train')
-ins_test = os.path.join(ins_root,'test')
+ins_train_path = os.path.join(ins_root,'train')
+ins_test_path = os.path.join(ins_root,'test')
 

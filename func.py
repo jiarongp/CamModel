@@ -4,8 +4,7 @@ import pandas as pd
 import numpy as np
 import fnmatch
 import time
-import imageio
-import cv2
+import matplotlib.pyplot as plt
 from tqdm import tqdm
 from multiprocessing import Pool
 from skimage.util.shape import view_as_blocks
@@ -14,7 +13,6 @@ from params import dresden_images_root, train_csv_path, patch_span, \
         patch_num, patches_root, patches_db_path
 
 def download(data, images_root, csv_path):
-
     csv_rows = []
     path_list = []
     brand_model_list = []
@@ -192,22 +190,27 @@ def evaluate(model_list, generator, model, index, columns, num_batch=100, title=
     
     return hist, conf, labels
 
-# Parameters
-# ----------
-# image : ndarray
-#     Input image data. Will be converted to float.
-# mode : str
-#     One of the following strings, selecting the type of noise to add:
+def mean_error(labels, conf, model_list):
+    labels = np.hstack((labels))
+    conf = np.vstack((conf))
+    df = pd.DataFrame(np.hstack((np.expand_dims(labels, axis=1), conf)), columns=['labels']+model_list)
+    print('The mean of the confidence is: \n')
+    mean = df.groupby(['labels']).mean()
+    display(mean)
+    print('The standard deviation of the confidence is: \n')
+    error = df.groupby(['labels']).std()
+    display(error)
+    
+    return mean, error
 
-#     'gauss'     Gaussian-distributed additive noise.
-
-def noisy(noise_typ,image):
-    if noise_typ == "gauss":
-        row,col,ch= image.shape
-        mean = 0
-        var = 0.1
-        sigma = var**0.5
-        gauss = np.random.normal(mean,sigma,(row,col,ch))
-        gauss = gauss.reshape(row,col,ch)
-        noisy = image + gauss
-    return noisy
+def plot_conf(model_list, labels, conf, graph):
+    labels = np.hstack((labels))
+    conf = np.vstack((conf))
+    for i in range(len(model_list)):
+        weights = []
+        idx = np.hstack(np.argwhere(labels==i))
+        for j in range(len(model_list)):
+            weights.append([i[j] for i in conf[idx]])
+        df = pd.DataFrame(np.array(weights).transpose(), columns=model_list)
+        df.plot( title='Classifying ' + model_list[i] + ' images', ax=graph[i])
+    plt.tight_layout()
