@@ -14,13 +14,16 @@ weights_path = os.path.join(patches_root,'weights.csv')
 
 unseen_root = 'unseen'
 
-compr_root = 'compr'
-compr_img = os.path.join(compr_root,'dresden')
-compr_patches = os.path.join(compr_root,'patches')
+post_root = 'post'
+compr_img = os.path.join(post_root,'compr')
+noise_img = os.path.join(post_root,'noise')
+blur_img = os.path.join(post_root,'blur')
 
 ins_root = 'instance'
-ins_csv = os.path.join(ins_root, 'instance.csv')
-ins_patches = os.path.join(ins_root,'patches')
-ins_patches_db = os.path.join(ins_patches,'patches.npy')
+ins_patches_db = os.path.join(ins_root,'patches.npy')
+ins_train_csv = os.path.join(ins_root, 'train.csv')
+ins_test_csv = os.path.join(ins_root, 'test.csv')
+ins_weights = os.path.join(ins_root,'weights.csv')
+ins_train = os.path.join(ins_root,'train')
 ins_test = os.path.join(ins_root,'test')
 

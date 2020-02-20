@@ -69,17 +69,22 @@ Test the robustness of our model (trained on Canon)
 We want to see whether our model simply see them as a unknown data or classifies them to one of the known categories.
 
 Test the model on 
-- Canon_Ixus55(same brand, same content)
-- Nikon_D70(same brand, same content)
-- Canon_Powershot64(same brand, different content)
-- Agfa_DC-830i(different brand, same content)
-- Sony_W170(different brand, different content)
+
+| Cameras              | brand       | content  |
+|----------------------|:-----------:|:--------:|
+| **Agfa_DC-830i**     | different   | same     |
+| **Canon_Ixus55**     | same        | same     |
+| **Canon_Powershot64**| same        | different|
+| **Nikon_D70**        | same        | same     |
+| **Sony_W170**        | different   | different|
 
 ### Robustness to Post-processing 
 
-- JPEG compression
-- Gaussian Noise 
-- Gaussian Blur.
+| Post-processing      | Parameter                              |
+|----------------------|:--------------------------------------:|
+| JPEG compression     | $QF = 70$                              |
+| Gaussian Noise       | $\sigma = 2$                           |
+| Gaussian Blur        | $\sigma = 1.1$, $K_{size} = 5 \times 5$|
 
 ### Robustness to Different Instances
 

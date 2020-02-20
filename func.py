@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 import fnmatch
 import time
+import imageio
+import cv2
 from tqdm import tqdm
 from multiprocessing import Pool
 from skimage.util.shape import view_as_blocks
@@ -93,7 +95,7 @@ def split(img_list, model_list, patches_db_path):
     val_list = shuffle_list[num_train:num_train + num_val].tolist()
     test_list = shuffle_list[num_train + num_val:].tolist()
 
-    split_info(train_list, val_list, test_list, model_list)
+    info, weights = split_info(train_list, val_list, test_list, model_list, total=len(img_list))
 
     patches_db = {
         'train': train_list,
@@ -103,7 +105,7 @@ def split(img_list, model_list, patches_db_path):
 
     np.save(patches_db_path, patches_db)
 
-    return train_list, val_list, test_list
+    return train_list, val_list, test_list, info, weights
 
 
 def patchify(img_name, patch_span, pacth_size=(256, 256)):
@@ -123,6 +125,7 @@ def patchify(img_name, patch_span, pacth_size=(256, 256)):
 def extract(args):
     # 'Agfa_DC-504/Agfa_DC-504_0_1_00.png' for example,
     # last part is the patch idex.
+    # Use PNG for losslessly storing images
     output_rel_paths = [os.path.join(args['data_set'], args['img_brand_model'],
                         os.path.splitext(os.path.split(args['img_path'])[-1])[0]+'_'+'{:02}'.format(patch_idx) + '.png')\
                         for patch_idx in range(args['patch_num'])]
@@ -144,8 +147,7 @@ def extract(args):
             if not os.path.exists(out_fulldir):
                 os.makedirs(out_fulldir)
             if not os.path.exists(out_fullpath):
-                io.imsave(out_fullpath, patch)
-
+                io.imsave(out_fullpath, patch, check_contrast=False)
     return output_rel_paths
 
 def patch(brand_model, path, data_set, patches_root=patches_root, patch_span=patch_span, \
@@ -189,3 +191,23 @@ def evaluate(model_list, generator, model, index, columns, num_batch=100, title=
     df.plot.bar(stacked=True, figsize=(10, 5), title=title)
     
     return hist, conf, labels
+
+# Parameters
+# ----------
+# image : ndarray
+#     Input image data. Will be converted to float.
+# mode : str
+#     One of the following strings, selecting the type of noise to add:
+
+#     'gauss'     Gaussian-distributed additive noise.
+
+def noisy(noise_typ,image):
+    if noise_typ == "gauss":
+        row,col,ch= image.shape
+        mean = 0
+        var = 0.1
+        sigma = var**0.5
+        gauss = np.random.normal(mean,sigma,(row,col,ch))
+        gauss = gauss.reshape(row,col,ch)
+        noisy = image + gauss
+    return noisy
