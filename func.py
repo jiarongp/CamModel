@@ -171,16 +171,18 @@ def evaluate(model_list, generator, model, index, columns, num_batch=100, title=
     t0 = time.time()
     hist = [[0, 0, 0] for i in range(len(model_list))]
     conf = []
-    labels = []
+    real_labels = []
+    pred_labels = []
     for i in range(num_batch):
         gen = next(generator)
         pred = model.predict(gen[0])
-        pred_labels = np.argmax(pred, axis=1)
-        real_labels = np.argmax(gen[1], axis=1)
+        pred_label = np.argmax(pred, axis=1)
+        real_label = np.argmax(gen[1], axis=1)
+        pred_labels.append(pred_label)
+        real_labels.append(real_label)
         conf.append(pred)
-        labels.append(real_labels)
-        for j in range(len(pred_labels)):
-            hist[real_labels[j]][pred_labels[j]] += 1
+        for j in range(len(pred_label)):
+            hist[real_label[j]][pred_label[j]] += 1
     t1 = time.time()
     print('\nIt tooks {:d} seconds\n'.format(int(t1-t0)))
 
@@ -189,29 +191,47 @@ def evaluate(model_list, generator, model, index, columns, num_batch=100, title=
     display(df)
     df.plot.bar(stacked=True, figsize=(10, 5), title=title)
     
-    return hist, conf, labels
+    return hist, conf, pred_labels, real_labels
 
-def mean_error(labels, conf, model_list):
-    labels = np.hstack((labels))
+def mean_error(conf, pred_labels, real_labels, real_model, pred_model):
     conf = np.vstack((conf))
-    df = pd.DataFrame(np.hstack((np.expand_dims(labels, axis=1), conf)), columns=['labels']+model_list)
+    conf_max = np.amax(conf, axis=1)
+    pred_labels = np.hstack((pred_labels))
+    real_labels = np.hstack((real_labels))
+
+    mean = np.zeros((len(real_model), len(pred_model)))
+    var = np.zeros((len(real_model), len(pred_model)))
+    for i in range(len(real_model)):
+        for j in range(len(pred_model)): 
+            c = conf_max[(pred_labels==j) & (real_labels==i)]
+            if len(c) != 0:
+                mean[i, j] = np.mean(c)
+                var[i, j] = np.var(c)
+            else:
+                mean[i, j] = 0
+                var[i, j] = 0
+
     print('The mean of the confidence is: \n')
-    mean = df.groupby(['labels']).mean()
-    display(mean)
+    df_mean = pd.DataFrame(mean, index=real_model, columns=pred_model)
+    display(df_mean)
     print('The standard deviation of the confidence is: \n')
-    error = df.groupby(['labels']).std()
-    display(error)
+    df_error = pd.DataFrame(var, index=real_model, columns=pred_model)
+    display(df_error)
     
-    return mean, error
+    return df_mean, df_error
 
-def plot_conf(model_list, labels, conf, graph):
-    labels = np.hstack((labels))
+def plot_conf(conf, pred_labels, real_labels, graph, real_model, pred_model):
     conf = np.vstack((conf))
-    for i in range(len(model_list)):
+    pred_labels = np.hstack((pred_labels))
+    real_labels = np.hstack((real_labels))
+    
+    for i in range(len(real_model)):
         weights = []
-        idx = np.hstack(np.argwhere(labels==i))
-        for j in range(len(model_list)):
-            weights.append([i[j] for i in conf[idx]])
-        df = pd.DataFrame(np.array(weights).transpose(), columns=model_list)
-        df.plot( title='Classifying ' + model_list[i] + ' images', ax=graph[i])
-    plt.tight_layout()
+        # find out the corresponding true labels
+        idx = np.hstack(np.argwhere(real_labels==i))
+        for j in range(len(pred_model)):
+            # for each camera label, it has a list to store its weights
+            weights.append([c[j] for c in conf[idx]])
+        df = pd.DataFrame(np.array(weights).transpose(), columns=pred_model)
+        df.plot(title='Classifying ' + real_model[i] + ' images', ax=graph[i])
+#     plt.tight_layout()
