@@ -163,6 +163,7 @@ def patch(brand_model, path, data_set, patches_root=patches_root, patch_span=pat
                        'img_root': img_root
                        }]
     num_processes = 4
+    
     pool = Pool(processes=num_processes)
     paths = pool.map(extract, imgs_list)
 
