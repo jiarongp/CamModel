@@ -1,0 +1,89 @@
+% This file was created by tikzplotlib v0.9.1.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
+\definecolor{color2}{rgb}{0.172549019607843,0.627450980392157,0.172549019607843}
+
+\pgfplotsset{compat=1.11,
+	/pgfplots/ybar legend/.style={
+		/pgfplots/legend image code/.code={%
+			\draw[##1,/tikz/.cd,yshift=-0.25em]
+			(0cm,0cm) rectangle (3pt,0.8em);},
+	}, every tick label/.append style={font=\scriptsize}
+}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.03,0.97)}, anchor=north west, draw=white!80!black},
+tick align=outside,
+tick pos=left,
+grid=major,
+x grid style={white!69.0196078431373!black},
+xmin=-0.5, xmax=2.5,
+xtick style={color=black},
+xtick={0,1,2},
+xticklabel style={text width=1cm, align=center},
+xticklabels={Canon Ixus70,Nikon D200,Olympus mju-1050SW},
+y grid style={white!69.0196078431373!black},
+ymin=0, ymax=3204.6,
+ytick style={color=black},
+y label style={at={(axis description cs:-0.13,.5)},anchor=south},
+ylabel={\small Number of images}
+]
+\draw[draw=none,fill=color0] (axis cs:-0.25,0) rectangle (axis cs:0.25,1364);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color0};
+\addlegendentry{\scriptsize Canon Ixus70}
+
+\draw[draw=none,fill=color0] (axis cs:0.75,0) rectangle (axis cs:1.25,871);
+\draw[draw=none,fill=color0] (axis cs:1.75,0) rectangle (axis cs:2.25,2315);
+\draw[draw=none,fill=color1] (axis cs:-0.25,1364) rectangle (axis cs:0.25,1371);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color1};
+\addlegendentry{\scriptsize Nikon D200}
+
+\draw[draw=none,fill=color1] (axis cs:0.75,871) rectangle (axis cs:1.25,1977);
+\draw[draw=none,fill=color1] (axis cs:1.75,2315) rectangle (axis cs:2.25,2334);
+\draw[draw=none,fill=color2] (axis cs:-0.25,0) rectangle (axis cs:0.25,0);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color2};
+\addlegendentry{\scriptsize Olympus mju-1050SW}
+
+\draw[draw=none,fill=color2] (axis cs:0.75,0) rectangle (axis cs:1.25,0);
+\draw[draw=none,fill=color2] (axis cs:1.75,2334) rectangle (axis cs:2.25,3052);
+\draw (axis cs:0,682) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{1364};
+\draw (axis cs:1,435.5) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{871};
+\draw (axis cs:2,1157.5) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{2315};
+\draw (axis cs:0,1367.5) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{7};
+\draw (axis cs:1,1424) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{1106};
+\draw (axis cs:2,2324.5) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{19};
+\draw (axis cs:2,2693) node[
+  scale=1,
+  text=black,
+  rotate=0.0
+]{718};
+\end{axis}
+
+\end{tikzpicture}

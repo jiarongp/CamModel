@@ -1,0 +1,50 @@
+% This file was created by tikzplotlib v0.9.1.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
+\definecolor{color2}{rgb}{0.172549019607843,0.627450980392157,0.172549019607843}
+
+\pgfplotsset{compat=1.11,
+	/pgfplots/ybar legend/.style={
+		/pgfplots/legend image code/.code={%
+			\draw[##1,/tikz/.cd,yshift=-0.25em]
+			(0cm,0cm) rectangle (3pt,0.8em);},
+	},
+}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.03,0.97)}, anchor=north west, draw=white!80!black},
+tick align=outside,
+tick pos=left,
+x grid style={white!69.0196078431373!black},
+xmin=-0.5, xmax=2.5,
+xtick style={color=black},
+xtick={0,1,2},
+xticklabels={\small Canon Ixus70, \small Nikon D200, \small Olympus mju-1050SW},
+y grid style={white!69.0196078431373!black},
+ymin=0, ymax=6415.5,
+ytick style={color=black}
+]
+\draw[draw=none,fill=color0] (axis cs:-0.25,0) rectangle (axis cs:0.25,2852);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color0};
+\addlegendentry{\small Canon Ixus70}
+
+\draw[draw=none,fill=color0] (axis cs:0.75,0) rectangle (axis cs:1.25,4);
+\draw[draw=none,fill=color0] (axis cs:1.75,0) rectangle (axis cs:2.25,0);
+\draw[draw=none,fill=color1] (axis cs:-0.25,0) rectangle (axis cs:0.25,0);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color1};
+\addlegendentry{\smallNikon D200}
+
+\draw[draw=none,fill=color1] (axis cs:0.75,4) rectangle (axis cs:1.25,3829);
+\draw[draw=none,fill=color1] (axis cs:1.75,0) rectangle (axis cs:2.25,0);
+\draw[draw=none,fill=color2] (axis cs:-0.25,0) rectangle (axis cs:0.25,0);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color2};
+\addlegendentry{\small Olympus mju-1050SW}
+
+\draw[draw=none,fill=color2] (axis cs:0.75,3829) rectangle (axis cs:1.25,3837);
+\draw[draw=none,fill=color2] (axis cs:1.75,0) rectangle (axis cs:2.25,6110);
+\end{axis}
+
+\end{tikzpicture}

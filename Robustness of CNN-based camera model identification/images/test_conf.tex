@@ -1,0 +1,188 @@
+% This file was created by tikzplotlib v0.9.1.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
+\definecolor{color2}{rgb}{0.172549019607843,0.627450980392157,0.172549019607843}
+
+\pgfplotsset{compat=1.11,
+	/pgfplots/ybar legend/.style={
+		/pgfplots/legend image code/.code={%
+			\draw[##1,/tikz/.cd,yshift=-0.25em]
+			(0cm,0cm) rectangle (3pt,0.8em);},
+	},
+	every tick label/.append style={font=\scriptsize}
+}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.91,0.5)}, anchor=east, draw=white!80!black},
+tick align=outside,
+tick pos=left,
+grid=major,
+x grid style={white!69.0196078431373!black},
+xmin=-0.5, xmax=2.5,
+xtick style={color=black},
+xtick={0,1,2},
+xticklabel style = {text width=2cm, align=center},
+xticklabels={Canon Ixus70, Nikon D200, Olympus mju-1050SW},
+y grid style={white!69.0196078431373!black},
+ymin=0, ymax=1.04966682860504,
+ytick style={color=black},
+y label style={at={(axis description cs:-0.1,.5)},anchor=south},
+ylabel={\small Mean confidence}
+]
+\draw[draw=none,fill=color0] (axis cs:-0.25,0) rectangle (axis cs:-0.0833333333333333,0.999627947807312);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color0};
+\addlegendentry{\scriptsize Canon Ixus70}
+
+\draw[draw=none,fill=color0] (axis cs:0.75,0) rectangle (axis cs:0.916666666666667,0.823229551315308);
+\draw[draw=none,fill=color0] (axis cs:1.75,0) rectangle (axis cs:1.91666666666667,0);
+\draw[draw=none,fill=color1] (axis cs:-0.0833333333333333,0) rectangle (axis cs:0.0833333333333333,0);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color1};
+\addlegendentry{\scriptsize Nikon D200}
+
+\draw[draw=none,fill=color1] (axis cs:0.916666666666667,0) rectangle (axis cs:1.08333333333333,0.998548150062561);
+\draw[draw=none,fill=color1] (axis cs:1.91666666666667,0) rectangle (axis cs:2.08333333333333,0);
+\draw[draw=none,fill=color2] (axis cs:0.0833333333333333,0) rectangle (axis cs:0.25,0);
+\addlegendimage{ybar,ybar legend,draw=none,fill=color2};
+\addlegendentry{\scriptsize Olympus mju-1050SW}
+
+\draw[draw=none,fill=color2] (axis cs:1.08333333333333,0) rectangle (axis cs:1.25,0.759181141853333);
+\draw[draw=none,fill=color2] (axis cs:2.08333333333333,0) rectangle (axis cs:2.25,0.998918771743774);
+\path [draw=black, semithick]
+(axis cs:-0.166666666666667,0.999573201705061)
+--(axis cs:-0.166666666666667,0.999682693909563);
+
+\path [draw=black, semithick]
+(axis cs:0.833333333333333,0.785822704434395)
+--(axis cs:0.833333333333333,0.86063639819622);
+
+\path [draw=black, semithick]
+(axis cs:1.83333333333333,0)
+--(axis cs:1.83333333333333,0);
+
+\path [draw=black, semithick]
+(axis cs:0,0)
+--(axis cs:0,0);
+
+\path [draw=black, semithick]
+(axis cs:1,0.998303965490777)
+--(axis cs:1,0.998792334634345);
+
+\path [draw=black, semithick]
+(axis cs:2,0)
+--(axis cs:2,0);
+
+\path [draw=black, semithick]
+(axis cs:0.166666666666667,0)
+--(axis cs:0.166666666666667,0);
+
+\path [draw=black, semithick]
+(axis cs:1.16666666666667,0.735817492008209)
+--(axis cs:1.16666666666667,0.782544791698456);
+
+\path [draw=black, semithick]
+(axis cs:2.16666666666667,0.998699586911243)
+--(axis cs:2.16666666666667,0.999137956576305);
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+-0.166666666666667 0.999573201705061
+0.833333333333333 0.785822704434395
+1.83333333333333 0
+};
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+-0.166666666666667 0.999682693909563
+0.833333333333333 0.86063639819622
+1.83333333333333 0
+};
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+0 0
+1 0.998303965490777
+2 0
+};
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+0 0
+1 0.998792334634345
+2 0
+};
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+0.166666666666667 0
+1.16666666666667 0.735817492008209
+2.16666666666667 0.998699586911243
+};
+
+\addplot [semithick, black, mark=-, mark size=4, mark options={solid}, only marks]
+table {%
+0.166666666666667 0
+1.16666666666667 0.782544791698456
+2.16666666666667 0.999137956576305
+};
+
+\draw (axis cs:-0.252,1.00762497138977) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{1.00};
+\draw (axis cs:0.7,0.87) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.82};
+\draw (axis cs:1.664,0.05) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.00};
+\draw (axis cs:-0.084,0.05) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.00};
+\draw (axis cs:0.924,1.00653653526306) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{1.00};
+\draw (axis cs:1.852,0.02) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.00};
+\draw (axis cs:0.084,0.02) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.00};
+\draw (axis cs:1.092,0.8) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{0.76};
+\draw (axis cs:2.1,1.00691012191772) node[
+scale=0.7,
+anchor=base west,
+text=black,
+rotate=0.0
+]{1.00};
+
+\end{axis}
+
+\end{tikzpicture}
