@@ -5,6 +5,7 @@ import numpy as np
 import fnmatch
 import time
 import matplotlib.pyplot as plt
+import tikzplotlib
 from tqdm import tqdm
 from multiprocessing import Pool
 from skimage.util.shape import view_as_blocks
@@ -167,7 +168,7 @@ def patch(brand_model, path, data_set, patches_root=patches_root, patch_span=pat
     pool = Pool(processes=num_processes)
     paths = pool.map(extract, imgs_list)
 
-def evaluate(model_list, generator, model, index, columns, num_batch=100, title=None):
+def evaluate(model_list, generator, model, index, columns, num_batch=100, title=None, tex=False):
     t0 = time.time()
     hist = [[0, 0, 0] for i in range(len(model_list))]
     conf = []
@@ -187,10 +188,22 @@ def evaluate(model_list, generator, model, index, columns, num_batch=100, title=
     print('\nIt tooks {:d} seconds\n'.format(int(t1-t0)))
 
     df = pd.DataFrame(hist, index=index, columns=columns)
-    print('index are predictions, columns are ground truth\n')
+    print('columns are predictions, index are ground truth\n')
     display(df)
-    df.plot.bar(stacked=True, figsize=(10, 5), title=title)
-    
+    ax = df.plot.bar(stacked=True, figsize=(10, 5), title=title)
+    for p in ax.patches:
+        width, height = p.get_width(), p.get_height()
+        if height==0: 
+            continue
+        else:
+            x, y = p.get_xy() 
+            ax.text(x+width/2, 
+                    y+height/2, 
+                    "{}".format(int(height)), 
+                    horizontalalignment='center', 
+                    verticalalignment='center')
+    if tex == True:
+        tikzplotlib.save("test_result.tex")
     return hist, conf, pred_labels, real_labels
 
 def mean_error(conf, pred_labels, real_labels, real_model, pred_model):
