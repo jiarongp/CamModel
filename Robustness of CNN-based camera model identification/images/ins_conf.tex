@@ -18,6 +18,7 @@ legend cell align={left},
 legend style={fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.03,0.03)}, anchor=south west, draw=white!80!black},
 tick align=outside,
 tick pos=left,
+grid=major,
 x grid style={white!69.0196078431373!black},
 xmin=-0.5, xmax=2.5,
 xtick style={color=black},
@@ -26,7 +27,9 @@ xticklabel style={text width=1cm, align=center},
 xticklabels={Canon Ixus70,Nikon D200,Olympus mju-1050SW},
 y grid style={white!69.0196078431373!black},
 ymin=0, ymax=1.04773845525342,
-ytick style={color=black}
+ytick style={color=black},
+y label style={at={(axis description cs:-0.1,.5)},anchor=south},
+ylabel={\small Mean confidence}
 ]
 \draw[draw=none,fill=color0] (axis cs:-0.25,0) rectangle (axis cs:-0.0833333333333333,0.99585235118866);
 \addlegendimage{ybar,ybar legend,draw=none,fill=color0};
